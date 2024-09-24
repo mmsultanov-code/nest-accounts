@@ -1,5 +1,5 @@
-import { Model, Column, Table, ForeignKey, BelongsTo } from 'sequelize-typescript';
-import { RolesModel } from '../../roles/entity/roles.model';
+import { Model, Column, Table, ForeignKey, BelongsTo } from 'sequelize-typescript'
+import { RolesModel } from '../../roles/entity/roles.model'
 
 @Table({
     tableName: 'users',
@@ -7,66 +7,66 @@ import { RolesModel } from '../../roles/entity/roles.model';
     indexes: [
         {
             unique: true,
-            fields: ['email'],
-        },
+            fields: ['email']
+        }
     ],
     updatedAt: 'updated_at',
     createdAt: 'created_at',
     defaultScope: {
         attributes: {
-            exclude: ['password'],
-        },
-    },
+            exclude: ['password']
+        }
+    }
 })
 export class UserModel extends Model {
     @Column({
         autoIncrement: true,
-        primaryKey: true,
+        primaryKey: true
     })
-    id: number;
+    id: number
 
     @Column
-    first_name: string;
+    first_name: string
 
     @Column
-    last_name: string;
+    last_name: string
 
     @Column({
         unique: true,
         validate: {
-            isEmail: true,
-        },
+            isEmail: true
+        }
     })
-    email: string;
+    email: string
 
     @Column
-    password: string;
+    password: string
 
     @ForeignKey(() => RolesModel)
     @Column
-    role_id: number;
+    role_id: number
 
     @BelongsTo(() => RolesModel)
-    role: RolesModel;
+    role: RolesModel
 
     @Column
-    deleted_at: Date;
+    deleted_at: Date
 
     @Column({ defaultValue: true })
-    is_active: boolean;
+    is_active: boolean
 
     @Column({ defaultValue: false })
-    is_deleted: boolean;
+    is_deleted: boolean
 
     @Column({
         type: 'TIMESTAMP',
-        defaultValue: new Date(),
+        defaultValue: new Date()
     })
-    created_at: Date;
+    created_at: Date
 
     @Column({
         type: 'TIMESTAMP',
-        defaultValue: new Date(),
+        defaultValue: new Date()
     })
-    updated_at: Date;
+    updated_at: Date
 }

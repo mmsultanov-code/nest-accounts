@@ -1,4 +1,4 @@
-import { LoggedUserRoleInterface } from "./logged-user-role.interface"
+import { LoggedUserRoleInterface } from './logged-user-role.interface'
 
 export class ResponseUserLoginInterface {
     id: number

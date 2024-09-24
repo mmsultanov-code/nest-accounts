@@ -41,6 +41,12 @@ export class UsersController {
         return new Array<ResponseAllUsersDTO>(...result)
     }
 
+    /**
+     * Retrieves a user by their ID.
+     *
+     * @param id - The ID of the user.
+     * @returns A Promise that resolves to a ResponseOneUserDTO object representing the user.
+     */
     @HasPermissions('user_show', 'user_all', 'super_admin_show', 'super_admin_all')
     @HttpCode(HttpStatus.OK)
     @Get(':id')
@@ -48,6 +54,13 @@ export class UsersController {
         return this.userService.get_by_id(id)
     }
 
+    /**
+     * Updates a user.
+     *
+     * @param id - The ID of the user to update.
+     * @param updateUserDTO - The data to update the user with.
+     * @returns A promise that resolves to the updated user.
+     */
     @HasPermissions('user_update', 'user_all', 'super_admin_update', 'super_admin_all')
     @HttpCode(HttpStatus.OK)
     @Patch(':id')
@@ -56,23 +69,16 @@ export class UsersController {
         return new ResponseOneUserDTO(result)
     }
 
+    /**
+     * Deletes a user by their ID.
+     *
+     * @param id - The ID of the user to delete.
+     * @returns A promise that resolves to void.
+     */
     @HasPermissions('user_delete', 'user_all', 'super_admin_delete', 'super_admin_all')
     @HttpCode(HttpStatus.NO_CONTENT)
     @Delete(':id')
     async delete_user(@Param('id') id: number): Promise<void> {
         return this.userService.delete(id)
     }
-    // generate delete user method with js doc
-    // generate login user method with js doc
-    // generate logout user method with js doc
-    // generate forgot password method with js doc
-    // generate reset password method with js doc
-    // generate change password method with js doc
-    // generate change email method with js doc
-    // generate change role method with js doc
-    // generate change status method with js doc
-    // generate change deleted status method with js doc
-    // generate change active status method with js doc
-    // generate change inactive status method with js doc
-    // generate change deleted status method with js doc
 }

@@ -1,4 +1,4 @@
-import type { UserModel } from "../entity/user.model"
+import type { UserModel } from '../entity/user.model'
 
 export class ResponseOneUserDTO {
     id: number

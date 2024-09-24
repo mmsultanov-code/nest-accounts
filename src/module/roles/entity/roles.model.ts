@@ -1,7 +1,7 @@
-import { Model, Column, HasMany, Table, BelongsToMany } from 'sequelize-typescript';
-import { RolePermissionsModel } from './../../permissions/entity/role-permissions.model';
-import { PermissionsModel } from './../../permissions/entity/permissions.model';
-import { UserModel } from './../../users/entity/user.model';
+import { Model, Column, HasMany, Table, BelongsToMany } from 'sequelize-typescript'
+import { RolePermissionsModel } from './../../permissions/entity/role-permissions.model'
+import { PermissionsModel } from './../../permissions/entity/permissions.model'
+import { UserModel } from './../../users/entity/user.model'
 
 @Table({
     tableName: 'roles',
@@ -10,30 +10,30 @@ import { UserModel } from './../../users/entity/user.model';
     indexes: [
         {
             unique: true,
-            fields: ['slug'],
-        },
+            fields: ['slug']
+        }
     ],
     updatedAt: 'updated_at',
-    createdAt: 'created_at',
+    createdAt: 'created_at'
 })
 export class RolesModel extends Model {
     @Column({
         autoIncrement: true,
-        primaryKey: true,
+        primaryKey: true
     })
-    id: number;
+    id: number
 
     @Column
-    name: string;
+    name: string
 
     @Column({
-        unique: true,
+        unique: true
     })
-    slug: string;
+    slug: string
 
     @HasMany(() => UserModel, { foreignKey: 'role_id' })
-    users: UserModel[];
+    users: UserModel[]
 
     @BelongsToMany(() => PermissionsModel, () => RolePermissionsModel)
-    permissions: PermissionsModel[];
+    permissions: PermissionsModel[]
 }

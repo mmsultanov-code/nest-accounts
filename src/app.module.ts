@@ -10,7 +10,7 @@ import { UserModel } from './module/users/entity/user.model'
 import { PermissionsModel } from './module/permissions/entity/permissions.model'
 import { RolesModel } from './module/roles/entity/roles.model'
 import { RolePermissionsModel } from './module/permissions/entity/role-permissions.model'
-import { AuthModule } from './module/auth/auth.module';
+import { AuthModule } from './module/auth/auth.module'
 
 @Module({
     imports: [
@@ -27,12 +27,7 @@ import { AuthModule } from './module/auth/auth.module';
                 database: process.env.DB_NAME,
                 autoLoadModels: true,
                 synchronize: true,
-                models: [
-                    UserModel,
-                    PermissionsModel,
-                    RolesModel,
-                    RolePermissionsModel
-                ]
+                models: [UserModel, PermissionsModel, RolesModel, RolePermissionsModel]
             })
         }),
         UsersModule,

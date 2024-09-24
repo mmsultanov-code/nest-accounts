@@ -1,4 +1,4 @@
-import { LoggedUserRoleDTO } from "./role.dto"
+import { LoggedUserRoleDTO } from './role.dto'
 
 export class ResponseUserLoginDTO {
     id: number

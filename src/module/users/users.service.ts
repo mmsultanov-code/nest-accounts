@@ -1,6 +1,6 @@
 import { InjectModel } from '@nestjs/sequelize'
 import { Injectable } from '@nestjs/common'
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt'
 
 import { UserModel } from './entity/user.model'
 
@@ -9,10 +9,10 @@ import { UserExistsException } from '@/common/exceptions/user-exist.exception'
 import { ResponseUserInterface } from './interface/response-user.interface'
 import type { CreateUserInterface } from './interface/create-user.interface'
 import { ResponseAllUsersInterface } from './interface/response-all-users.interface'
-import { ResponseOneUserInterface } from './interface/response-one-user.interface';
-import { UpdateUserInterface } from './interface/update-user.interface';
-import { RolesModel } from '../roles/entity/roles.model';
-import { ResponseUserRegisterInterface } from './interface/response-user-register.interface';
+import { ResponseOneUserInterface } from './interface/response-one-user.interface'
+import { UpdateUserInterface } from './interface/update-user.interface'
+import { RolesModel } from '../roles/entity/roles.model'
+import { ResponseUserRegisterInterface } from './interface/response-user-register.interface'
 
 @Injectable()
 export class UsersService {
@@ -32,9 +32,9 @@ export class UsersService {
             throw new UserExistsException()
         }
         try {
-            const salt_or_rounds = Number(process.env.SALT) || 12;
-            const password = user_data.password;
-            const hashed_password = await bcrypt.hash(password, salt_or_rounds);
+            const salt_or_rounds = Number(process.env.SALT) || 12
+            const password = user_data.password
+            const hashed_password = await bcrypt.hash(password, salt_or_rounds)
             user_data = { ...user_data, role_id: 1, password: hashed_password }
             const user = await this.userModel.create(user_data)
             return user
@@ -64,7 +64,7 @@ export class UsersService {
      *
      * @param id - The ID of the user to fetch.
      * @returns A promise that resolves to the user.
-    */
+     */
     async get_by_id(id: number): Promise<ResponseOneUserInterface> {
         try {
             const user = await this.userModel.findByPk(id)
@@ -80,14 +80,14 @@ export class UsersService {
      * @param id - The ID of the user to update.
      * @param user_data - The data to update the user with.
      * @returns A promise that resolves to the updated user.
-    */
+     */
     async update(id: number, user_data: Partial<UpdateUserInterface>): Promise<ResponseOneUserInterface> {
         try {
-            const salt_or_rounds = Number(process.env.SALT) || 12;
-            const password = user_data.password;
-            const hashed_password = await bcrypt.hash(password, salt_or_rounds);
+            const salt_or_rounds = Number(process.env.SALT) || 12
+            const password = user_data.password
+            const hashed_password = await bcrypt.hash(password, salt_or_rounds)
             const user = await this.userModel.findByPk(id)
-            await user.update({...user_data, password: hashed_password})
+            await user.update({ ...user_data, password: hashed_password })
             return user
         } catch (err) {
             throw new Error(err)
@@ -99,7 +99,7 @@ export class UsersService {
      *
      * @param id - The ID of the user to delete.
      * @returns A promise that resolves to void.
-    */
+     */
     async delete(id: number): Promise<void> {
         try {
             const user = await this.userModel.findByPk(id)
@@ -119,7 +119,7 @@ export class UsersService {
             where: { email },
             include: [RolesModel],
             attributes: ['id', 'first_name', 'last_name', 'email', 'password', 'role_id', 'is_active', 'is_deleted', 'created_at', 'updated_at', 'password']
-        });
+        })
     }
 
     /**
@@ -136,9 +136,9 @@ export class UsersService {
             throw new UserExistsException()
         }
         try {
-            const salt_or_rounds = Number(process.env.SALT) || 12;
-            const password = user_data.password;
-            const hashed_password = await bcrypt.hash(password, salt_or_rounds);
+            const salt_or_rounds = Number(process.env.SALT) || 12
+            const password = user_data.password
+            const hashed_password = await bcrypt.hash(password, salt_or_rounds)
             user_data = { ...user_data, role_id: 1, password: hashed_password }
             const user = await this.userModel.create(user_data)
             return user
@@ -146,5 +146,4 @@ export class UsersService {
             throw new Error(err)
         }
     }
-
 }
