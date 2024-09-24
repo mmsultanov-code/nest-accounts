@@ -11,6 +11,10 @@ import { PermissionsModel } from '../permissions/models/permissions.model'
 import { RolesModel } from '../roles/models/roles.model'
 import { RolePermissionsModel } from '../permissions/models/role-permissions.model'
 import { AuthModule } from '../auth/auth.module'
+import { AccountModule } from '../accounts/account.module'
+import { AccountModel } from '../accounts/models/account.model'
+import { IncomingFundsModel } from '../accounts/models/incoming-funds'
+import { ParseModule } from '../parse/parse.module'
 
 @Module({
     imports: [
@@ -30,6 +34,7 @@ import { AuthModule } from '../auth/auth.module'
                 models: [UserModel, PermissionsModel, RolesModel, RolePermissionsModel]
             })
         }),
+        ParseModule,
         UsersModule,
         PermissionsModule,
         RolesModule,
