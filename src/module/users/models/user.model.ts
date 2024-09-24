@@ -1,5 +1,5 @@
 import { Model, Column, Table, ForeignKey, BelongsTo } from 'sequelize-typescript'
-import { RolesModel } from '../../roles/entity/roles.model'
+import { RolesModel } from '../../roles/models/roles.model'
 
 @Table({
     tableName: 'users',

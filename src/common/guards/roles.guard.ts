@@ -4,9 +4,9 @@ import { Reflector } from '@nestjs/core'
 import { Request } from 'express'
 import { HAS_PERMISSIONS_KEY } from '../decorators/has-permissions.decorator'
 import { InjectModel } from '@nestjs/sequelize'
-import { UserModel } from '@/module/users/entity/user.model'
-import { RolesModel } from '@/module/roles/entity/roles.model'
-import { PermissionsModel } from '@/module/permissions/entity/permissions.model'
+import { UserModel } from '@/module/users/models/user.model'
+import { RolesModel } from '@/module/roles/models/roles.model'
+import { PermissionsModel } from '@/module/permissions/models/permissions.model'
 
 /**
  * A guard that checks if a user has the required permissions to access a route.

@@ -2,7 +2,7 @@ import { InjectModel } from '@nestjs/sequelize'
 import { Injectable } from '@nestjs/common'
 import * as bcrypt from 'bcrypt'
 
-import { UserModel } from './entity/user.model'
+import { UserModel } from './models/user.model'
 
 import { UserExistsException } from '@/common/exceptions/user-exist.exception'
 
@@ -11,7 +11,7 @@ import type { CreateUserInterface } from './interface/create-user.interface'
 import { ResponseAllUsersInterface } from './interface/response-all-users.interface'
 import { ResponseOneUserInterface } from './interface/response-one-user.interface'
 import { UpdateUserInterface } from './interface/update-user.interface'
-import { RolesModel } from '../roles/entity/roles.model'
+import { RolesModel } from '../roles/models/roles.model'
 import { ResponseUserRegisterInterface } from './interface/response-user-register.interface'
 
 @Injectable()

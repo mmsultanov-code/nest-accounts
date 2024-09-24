@@ -1,6 +1,6 @@
 import { Model, Column, Table, BelongsToMany } from 'sequelize-typescript'
 import { RolePermissionsModel } from './role-permissions.model'
-import { RolesModel } from '../../roles/entity/roles.model'
+import { RolesModel } from '../../roles/models/roles.model'
 
 @Table({
     tableName: 'permissions',
