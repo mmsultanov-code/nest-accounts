@@ -3,7 +3,9 @@ import { AuthService } from './auth.service'
 import { SignInDTO } from './dto/sign-in.dto'
 import { ResponseUserLoginDTO } from './dto/response-user-login.dto'
 import { CreateUserDTO } from '../users/dto/create-user.dto'
+import { ApiResponse, ApiTags } from '@nestjs/swagger'
 
+@ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
     constructor(private readonly authService: AuthService) {}
@@ -15,6 +17,7 @@ export class AuthController {
      * @returns {Promise<any>} - A promise that resolves with the result of the sign-in operation.
      */
     @HttpCode(HttpStatus.OK)
+    @ApiResponse({ status: HttpStatus.OK, type: ResponseUserLoginDTO })
     @Post('login')
     async sign_in(@Body() SignInDTO: SignInDTO): Promise<ResponseUserLoginDTO> {
         const response = await this.authService.sign_in(SignInDTO.email, SignInDTO.password)
@@ -28,6 +31,7 @@ export class AuthController {
      * @returns {Promise<any>} - A promise that resolves with the result of the sign-up operation.
      */
     @HttpCode(HttpStatus.CREATED)
+    @ApiResponse({ status: HttpStatus.CREATED, type: ResponseUserLoginDTO })
     @Post('register')
     async sign_up(@Body() signUpDTO: CreateUserDTO): Promise<ResponseUserLoginDTO> {
         const response = await this.authService.sign_up(signUpDTO)

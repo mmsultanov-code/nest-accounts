@@ -8,8 +8,10 @@ import { UpdateUserDTO } from './dto/update-user.dto'
 import { AuthGuard } from '../auth/guards/auth.guard'
 import { HasPermissions } from '@/common/decorators/has-permissions.decorator'
 import { PermissionsGuard } from '@/common/guards/roles.guard'
+import { ApiResponse, ApiTags } from '@nestjs/swagger'
 
 @UseGuards(AuthGuard, PermissionsGuard)
+@ApiTags('Users')
 @Controller('users')
 export class UsersController {
     constructor(private readonly userService: UsersService) {}
@@ -22,6 +24,7 @@ export class UsersController {
      */
     @HasPermissions('user_create', 'user_all', 'super_admin_create', 'super_admin_all')
     @HttpCode(HttpStatus.CREATED)
+    @ApiResponse({ status: HttpStatus.CREATED, type: ResponseCreatedUserDTO })
     @Post()
     async create(@Body() createUserDTO: CreateUserDTO): Promise<ResponseCreatedUserDTO> {
         const result = await this.userService.create(createUserDTO)
@@ -35,6 +38,7 @@ export class UsersController {
      */
     @HasPermissions('user_index', 'user_all', 'super_admin_index', 'super_admin_all')
     @HttpCode(HttpStatus.OK)
+    @ApiResponse({ status: HttpStatus.OK, type: Array<ResponseAllUsersDTO> })
     @Get()
     async get_all_users(): Promise<Array<ResponseAllUsersDTO>> {
         const result = await this.userService.get_all()
@@ -49,6 +53,7 @@ export class UsersController {
      */
     @HasPermissions('user_show', 'user_all', 'super_admin_show', 'super_admin_all')
     @HttpCode(HttpStatus.OK)
+    @ApiResponse({ status: HttpStatus.OK, type: ResponseOneUserDTO })
     @Get(':id')
     async get_user_by_id(@Param('id') id: number): Promise<ResponseOneUserDTO> {
         return this.userService.get_by_id(id)
@@ -63,6 +68,7 @@ export class UsersController {
      */
     @HasPermissions('user_update', 'user_all', 'super_admin_update', 'super_admin_all')
     @HttpCode(HttpStatus.OK)
+    @ApiResponse({ status: HttpStatus.OK, type: ResponseOneUserDTO })
     @Patch(':id')
     async update_user(@Param('id') id: number, @Body() updateUserDTO: Partial<UpdateUserDTO>): Promise<ResponseOneUserDTO> {
         const result = await this.userService.update(id, updateUserDTO)
@@ -77,6 +83,7 @@ export class UsersController {
      */
     @HasPermissions('user_delete', 'user_all', 'super_admin_delete', 'super_admin_all')
     @HttpCode(HttpStatus.NO_CONTENT)
+    @ApiResponse({ status: HttpStatus.NO_CONTENT })
     @Delete(':id')
     async delete_user(@Param('id') id: number): Promise<void> {
         return this.userService.delete(id)

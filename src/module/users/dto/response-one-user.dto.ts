@@ -1,15 +1,56 @@
+import { ApiProperty } from '@nestjs/swagger'
 import type { UserModel } from '../entity/user.model'
 
 export class ResponseOneUserDTO {
+    @ApiProperty({
+        example: 1,
+        description: 'The ID of the user.'
+    })
     id: number
+    @ApiProperty({
+        example: 'John',
+        description: 'The first name of the user.'
+    })
     first_name: string
+    @ApiProperty({
+        example: 'Doe',
+        description: 'The last name of the user.'
+    })
     last_name: string
+    @ApiProperty({
+        example: 'test@example.com',
+        description: 'The email of the user.'
+    })
     email: string
+    @ApiProperty({
+        example: 1,
+        description: 'The ID of the role of the user.'
+    })
     role_id: number
+    @ApiProperty({
+        example: null,
+        description: 'The date the user was deleted.'
+    })
     deleted_at: Date | null
+    @ApiProperty({
+        example: true,
+        description: 'Whether the user is active.'
+    })
     is_active: boolean
+    @ApiProperty({
+        example: false,
+        description: 'Whether the user is deleted.'
+    })
     is_deleted: boolean
+    @ApiProperty({
+        example: '2022-01-01T00:00:00.000Z',
+        description: 'The date the user was created.'
+    })
     created_at: Date
+    @ApiProperty({
+        example: '2022-01-01T00:00:00.000Z',
+        description: 'The date the user was last updated.'
+    })
     updated_at: Date
 
     constructor(data: {
