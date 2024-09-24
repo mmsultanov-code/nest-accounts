@@ -32,8 +32,8 @@ export class RolesModel extends Model {
     slug: string
 
     @HasMany(() => UserModel, { foreignKey: 'role_id' })
-    users: UserModel[]
+    users: Array<UserModel>
 
     @BelongsToMany(() => PermissionsModel, () => RolePermissionsModel)
-    permissions: PermissionsModel[]
+    permissions: Array<PermissionsModel>
 }
