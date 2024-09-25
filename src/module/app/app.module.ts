@@ -31,14 +31,15 @@ import { ParseModule } from '../parse/parse.module'
                 database: process.env.DB_NAME,
                 autoLoadModels: true,
                 synchronize: true,
-                models: [UserModel, PermissionsModel, RolesModel, RolePermissionsModel]
+                models: [UserModel, PermissionsModel, RolesModel, RolePermissionsModel, AccountModel, IncomingFundsModel]
             })
         }),
         ParseModule,
         UsersModule,
         PermissionsModule,
         RolesModule,
-        AuthModule
+        AuthModule,
+        AccountModule,
     ],
     controllers: [AppController],
     providers: [AppService]
