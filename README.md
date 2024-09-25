@@ -29,102 +29,29 @@
     npm install
     ```
 
-4. Создайте файл `.env` на основе `.env.example` и настройте параметры подключения к базе данных.
+4. Создайте базу даных
 
-5. Выполните миграции для создания таблиц в базе данных:
+4. Создайте файл `.env` на основе `.env.example` и настройте параметры подключения к созданной базе данных.
 
-    ```bash
-    npx sequelize-cli db:migrate
-    ```
-
-6. Запустите приложение:
+5. Запустите приложение:
 
     ```bash
-    npm run start
+    npm run start:dev
     ```
+    
+# Запуск проекта
 
-## API
+После запуска проекта будет доступна ссылка [/docs](http://localhost:3000/docs/)
 
-### Методы
+# Миграция
 
-| Метод     | URL                          | Описание                      | Тело запроса                                                                                           |
-|-----------|------------------------------|-------------------------------|--------------------------------------------------------------------------------------------------------|
-| POST       | /users/                      | Создать пользователя           | ```json\n{ "first_name": "first_name",\n    "last_name": "last_name",\n    "email": "test@example.com",\n    "password": "test_password"\n}``` |
-| POST       | /auth/register/              | Регистрация пользователя       | ```json\n{ "first_name": "first_name",\n    "last_name": "last_name",\n    "email": "test@example.com",\n    "password": "test_password"\n}``` |
-| POST       | /auth/login                  | Авторизация пользователя       | ```json\n{ "email": "test@example.com",\n    "password": "test_password"\n}``` |
-| PATCH      | /users/1                     | Обновить пользователя по ID    | ```json\n{ "first_name": "first_name",\n    "last_name": "last_name",\n    "email": "test@example.com"\n}``` |
-| DELETE     | /users/1                     | Удалить пользователя по ID     | ```json\n{ "first_name": "first_name",\n    "last_name": "last_name",\n    "email": "test@example.com"\n}``` |
-| GET        | /users/                      | Получить всех пользователей    | Нет тела запроса                                                                                      |
-| GET        | /users/1                     | Получить пользователя по ID    | Нет тела запроса                                                                                      |
+Что бы записать первоначальные данные в базу данных используйте метод `parse-data`, после этого будут доступны два вида пользователей для авторизации
 
-## Примеры запросов
+- Admin
+    - email: `test@example.com`
+    - password: `test`
+- User
+    - email: `test_user@example.com`
+    - password: `test`
 
-### Создать пользователя
-
-```http
-POST /users/
-Content-Type: application/json
-
-{
-    "first_name": "first_name",
-    "last_name": "last_name",
-    "email": "test@example.com",
-    "password": "test_password"
-}
-```
-
-### Регистрация
-```http
-POST /auth/register/
-Content-Type: application/json
-
-{
-    "first_name": "first_name",
-    "last_name": "last_name",
-    "email": "test@example.com",
-    "password": "test_password"
-}
-```
-
-### Авторизация
-```http
-POST /auth/login
-Content-Type: application/json
-
-{
-    "email": "test@example.com",
-    "password": "test_password"
-}
-```
-
-### Обновить пользователя
-
-```http
-PATCH /users/1
-Content-Type: application/json
-
-{
-    "first_name": "first_name",
-    "last_name": "last_name",
-    "email": "test@example.com"
-}
-```
-### Удалить пользователя
-
-```http
-DELETE /users/1
-Content-Type: application/json
-
-{
-    "first_name": "first_name",
-    "last_name": "last_name",
-    "email": "test@example.com"
-}
-```
-### Получить всех пользователей
-
-`GET /users/`
-
-### Получить пользователя по ID
-
-`GET /users/1`
+Отличия между пользователями в подкрепленных правах к каждому из них
