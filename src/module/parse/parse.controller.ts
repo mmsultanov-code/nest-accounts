@@ -1,6 +1,6 @@
 import { Controller, HttpCode, HttpStatus, Post } from "@nestjs/common";
 import { ParseService } from "./parse.service";
-import { ApiResponse, ApiTags } from "@nestjs/swagger";
+import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 
 @ApiTags('Parse')
 @Controller('parse')
@@ -10,6 +10,12 @@ export class ParseController {
         private readonly parseService: ParseService
     ) {}
 
+    /**
+     * Parses the data using the parseService.
+     *
+     * @returns A promise that resolves to the parsed data.
+     */
+    @ApiOperation({ summary: 'Parse data' })
     @ApiResponse({ status: 200, description: 'Data parsed successfully' })
     @HttpCode(HttpStatus.OK)
     @Post('parse-data')

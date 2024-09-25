@@ -35,10 +35,10 @@ import { ParseModule } from '../parse/parse.module'
             })
         }),
         ParseModule,
+        AuthModule,
         UsersModule,
         PermissionsModule,
         RolesModule,
-        AuthModule,
         AccountModule,
     ],
     controllers: [AppController],

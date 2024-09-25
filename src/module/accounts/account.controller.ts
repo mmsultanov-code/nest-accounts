@@ -1,7 +1,7 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from "@nestjs/common";
 import { AccountService } from "./account.service";
 import { CreateAccountDTO } from "./dto/create-account.dto";
-import { ApiResponse, ApiTags } from "@nestjs/swagger";
+import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { CreatedAccountDTO } from "./dto/created-account.dto";
 import { AccountBalanceRequestDTO } from "./dto/request-get-balance.dto";
 import { AccountGetBalanceResponseDTO } from "./dto/response-get-balance.dto";
@@ -24,6 +24,7 @@ export class AccountController {
      * @param createAccountDTO - The data for creating the account.
      * @returns A promise that resolves to the created account.
      */
+    @ApiOperation({ summary: 'Create an account' })
     @ApiResponse({ status: 201, description: 'Account created successfully', type: CreatedAccountDTO })
     @HttpCode(HttpStatus.CREATED)
     @Post('create-account')
@@ -38,6 +39,7 @@ export class AccountController {
      * @param getAccountBalance - The data for retrieving the account balance.
      * @returns A promise that resolves to the balance of the account.
      */
+    @ApiOperation({ summary: 'Get account balance' })
     @ApiResponse({ status: 200, description: 'Account balance retrieved successfully', type: AccountGetBalanceResponseDTO })
     @HttpCode(HttpStatus.OK)
     @Post('account-balance')
@@ -52,6 +54,7 @@ export class AccountController {
      * @param data - The data containing the incoming fund request details.
      * @returns A promise that resolves to the response of the incoming fund request.
      */
+    @ApiOperation({ summary: 'Incoming fund' })
     @ApiResponse({ status: 200, description: 'Incoming fund processed successfully', type: ResponseIncomingFundDTO })
     @HttpCode(HttpStatus.OK)
     @Post('incoming-fund')
@@ -60,6 +63,13 @@ export class AccountController {
         return new ResponseIncomingFundDTO(response)
     }
 
+    /**
+     * Retrieves a fund by its ID.
+     *
+     * @param data - The request data containing the fund ID.
+     * @returns A promise that resolves to the response containing the fund details.
+     */
+    @ApiOperation({ summary: 'Get fund by ID' })
     @ApiResponse({ status: 200, description: 'Fund retrieved successfully', type: ResponseIncomingOneFundDTO })
     @HttpCode(HttpStatus.OK)
     @Post('get-fund')
